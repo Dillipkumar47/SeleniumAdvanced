@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -26,33 +27,71 @@ import org.testng.annotations.Test;
 public class Submit {
 	
 	Logger logger = Logger.getLogger(Submit.class.getName()); 
+	WebElement signUpLink= null;
+	WebElement selUserType= null;
+	WebElement selLocation= null;
+	WebElement txtName= null;
+	WebElement txtEmpNo= null;
+	WebElement radioGenderMale= null;
+	WebElement radioGenderFemale= null;
+	WebElement txtEmail= null;
+	WebElement btnCreateUser= null;
+	WebElement lableSuccess= null;
+	
 
-	WebDriver driver =null;
+	WebElement loginLink= null;
+	WebElement txtUsername= null;
+	WebElement txtPassword= null;
+
+	WebElement btnAddChem= null;
+	WebElement btnViewChem= null;
+	WebElement txtAddName= null;
+	WebElement txtAddSrNo= null;
+	WebElement txtAddType= null;
+	WebElement txtAddQuantity= null;
+			WebDriver driver =null;
+
+	
+	@BeforeMethod
+	public void initializeDriver() {
+		System.setProperty("webdriver.chrome.driver","/Users/dillipnayak/Downloads/chromedriver");
+		driver = new ChromeDriver();
+		driver.get("https://google.com");
+		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		logger.info("Title of the page <<>"+driver.getTitle()+">");
+		logger.info("No of Hyperlinks <<"+driver.findElements(By.tagName("//a")).size()+">>");
+
+	}
+	
+	public void createLocators() {
+		 signUpLink= ce("");
+		 selUserType= ce("");
+		 selLocation= ce("");
+		 txtName= ce("");
+		 txtEmpNo= ce("");
+		 radioGenderMale= ce("");
+		 radioGenderFemale= ce("");
+		 txtEmail= ce("");
+		 btnCreateUser= ce("");
+		 lableSuccess= ce("");
+		
+
+		 loginLink= ce("");
+		 txtUsername= ce("");
+		 txtPassword= ce("");
+
+		 btnAddChem= ce("");
+		 btnViewChem= ce("");
+		 txtAddName= ce("");
+		 txtAddSrNo= ce("");
+		 txtAddType= ce("");
+		 txtAddQuantity= ce("");
+
+	}
+	
 	//copy xpath from UI into ""
-	WebElement signUpLink= ce("");
-	WebElement selUserType= ce("");
-	WebElement selLocation= ce("");
-	WebElement txtName= ce("");
-	WebElement txtEmpNo= ce("");
-	WebElement radioGenderMale= ce("");
-	WebElement radioGenderFemale= ce("");
-	WebElement txtEmail= ce("");
-	WebElement btnCreateUser= ce("");
-	WebElement lableSuccess= ce("");
-	
-
-	WebElement loginLink= ce("");
-	WebElement txtUsername= ce("");
-	WebElement txtPassword= ce("");
-
-	WebElement btnAddChem= ce("");
-	WebElement btnViewChem= ce("");
-	WebElement txtAddName= ce("");
-	WebElement txtAddSrNo= ce("");
-	WebElement txtAddType= ce("");
-	WebElement txtAddQuantity= ce("");
-	
-	@Test 
+		
+	@Test (priority = 0)
 	public void test01() throws IOException {
 		System.out.println("Running test 01");
 		String userType="";
@@ -99,7 +138,7 @@ public class Submit {
 			 
 			 
 		}
-		
+		signUpLink.click();
 
 	}
 	
@@ -114,6 +153,7 @@ public class Submit {
 		txtAddSrNo.sendKeys(srNo);
 		txtAddQuantity.sendKeys(quantity);
 		btnViewChem.click();
+		
 	}
 
 	public WebElement ce(String xpath) {
@@ -129,15 +169,7 @@ public class Submit {
 	}
 
 
-	@BeforeMethod
-	public void initializeDriver() {
-		System.setProperty("webdriver.chrome.driver","/Users/dillipnayak/Downloads/chromedriver");
-		driver = new ChromeDriver();
-		driver.get("https://google.com");
-		logger.info("Title of the page <<>"+driver.getTitle()+">");
-		logger.info("No of Hyperlinks <<"+driver.findElements(By.tagName("//a")).size()+">>");
-
-	}
+	
 	
 
 
