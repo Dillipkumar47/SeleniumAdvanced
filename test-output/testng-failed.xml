@@ -12,19 +12,4 @@
       </class> <!-- test.Submit -->
     </classes>
   </test> <!-- Test 01(failed) -->
-  <test thread-count="5" name="test 02(failed)">
-    <parameter name="Type" value="Toxic"/>
-    <parameter name="ServiceNo" value="12345"/>
-    <parameter name="Quantity" value="5000"/>
-    <parameter name="Name" value="Mercury"/>
-    <classes>
-      <class name="test.Submit">
-        <methods>
-          <include name="release"/>
-          <include name="test02" invocation-numbers="0"/>
-          <include name="initializeDriver"/>
-        </methods>
-      </class> <!-- test.Submit -->
-    </classes>
-  </test> <!-- test 02(failed) -->
 </suite> <!-- Failed suite [Assessment] -->

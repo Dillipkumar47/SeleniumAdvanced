@@ -49,49 +49,48 @@ public class Submit {
 	WebElement txtAddSrNo= null;
 	WebElement txtAddType= null;
 	WebElement txtAddQuantity= null;
-			WebDriver driver =null;
+	public static WebDriver driver =null;
 
-	
+	//initialize driver
 	@BeforeMethod
 	public void initializeDriver() {
 		System.setProperty("webdriver.chrome.driver","/Users/dillipnayak/Downloads/chromedriver");
 		driver = new ChromeDriver();
-		driver.get("https://google.com");
-		driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+		driver.get("https://www.google.ca/");
+		driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 		logger.info("Title of the page <<>"+driver.getTitle()+">");
 		logger.info("No of Hyperlinks <<"+driver.findElements(By.tagName("//a")).size()+">>");
-
+		createLocators();
 	}
 	
+	//Copy Actual & relevant locators from the application under test
 	public void createLocators() {
-		 signUpLink= ce("");
-		 selUserType= ce("");
-		 selLocation= ce("");
-		 txtName= ce("");
-		 txtEmpNo= ce("");
-		 radioGenderMale= ce("");
-		 radioGenderFemale= ce("");
-		 txtEmail= ce("");
-		 btnCreateUser= ce("");
-		 lableSuccess= ce("");
+		 signUpLink= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 selUserType= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 selLocation= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtName= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtEmpNo= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 radioGenderMale= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 radioGenderFemale= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtEmail= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 btnCreateUser= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 lableSuccess= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
 		
 
-		 loginLink= ce("");
-		 txtUsername= ce("");
-		 txtPassword= ce("");
+		 loginLink= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtUsername= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtPassword= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
 
-		 btnAddChem= ce("");
-		 btnViewChem= ce("");
-		 txtAddName= ce("");
-		 txtAddSrNo= ce("");
-		 txtAddType= ce("");
-		 txtAddQuantity= ce("");
+		 btnAddChem= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 btnViewChem= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtAddName= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtAddSrNo= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtAddType= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
+		 txtAddQuantity= ce("/html/body/div[1]/div[3]/form/div[2]/div[1]/div[1]/div/div[2]/input");
 
 	}
-	
-	//copy xpath from UI into ""
 		
-	@Test (priority = 0)
+	@Test 
 	public void test01() throws IOException {
 		System.out.println("Running test 01");
 		String userType="";
@@ -138,7 +137,6 @@ public class Submit {
 			 
 			 
 		}
-		signUpLink.click();
 
 	}
 	
@@ -161,7 +159,7 @@ public class Submit {
 		ele=driver.findElement(By.xpath(xpath));
 		return ele;
 	}
-
+	//release resources after test
 	@AfterMethod
 	public void release() {
 		driver.close();
