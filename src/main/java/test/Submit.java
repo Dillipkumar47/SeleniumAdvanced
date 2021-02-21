@@ -27,22 +27,15 @@ import org.testng.annotations.Test;
 
 
 public class Submit {
-
 	Logger logger = Logger.getLogger(Submit.class.getName()); 
-
-
-
 	public static WebDriver driver =null;
-
 	//initialize driver
 	@BeforeMethod
 	public void initializeDriver() {
 		System.setProperty("webdriver.chrome.driver","/Users/dillipnayak/Downloads/chromedriver");
 		driver = new ChromeDriver();
-
-
 	}
-
+	
 	@Test 
 	public void test01() throws IOException {
 		System.out.println("Running test 01");
@@ -102,8 +95,6 @@ public class Submit {
 			txtEmail.sendKeys(emialID);
 			btnCreateUser.click();
 			logger.info(lableSuccess.getText());
-
-
 		}
 
 	}
@@ -170,13 +161,5 @@ public class Submit {
 		closeWindows();
 
 	}
-
-
-
-
-
-
-
-
 
 }
